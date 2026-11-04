@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+        input {
+            display: block;
+            margin: 5px 0;
+            padding: 5px;
+        }
+        button {
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Storage</h2>
+
+    <input type="text" id="name" placeholder="Enter your name">
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <button onclick="saveData()">save</button>
+    <button onclick="readData()">read</button>
+    <button onclick="removeAll()">removeAll</button>
+    <button onclick="removeName()">remove Name</button>
+    <button onclick="removePassword()">remove Password</button>
+
+    <p id="showName"></p>
+    <p id="showPassword"></p>
+
+    <script>
+        function saveData() {
+            localStorage.setItem("name", document.getElementById("name").value);
+            localStorage.setItem("password", document.getElementById("password").value);
+            alert("تم حفظ البيانات");
+        }
+
+        function readData() {
+            document.getElementById("showName").innerText =
+                "Your name is: " + (localStorage.getItem("name") || "");
+            document.getElementById("showPassword").innerText =
+                "Your password is: " + (localStorage.getItem("password") || "");
+        }
+
+        function removeAll() {
+            localStorage.clear();
+            document.getElementById("showName").innerText = "";
+            document.getElementById("showPassword").innerText = "";
+        }
+
+        function removeName() {
+            localStorage.removeItem("name");
+            document.getElementById("showName").innerText = "";
+        }
+
+        function removePassword() {
+            localStorage.removeItem("password");
+            document.getElementById("showPassword").innerText = "";
+        }
+    </script>
+
+</body>
+</html>

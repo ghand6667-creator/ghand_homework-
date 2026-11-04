@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق قائمة المهام التفاعلية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 40px;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            background: #ffffff;
+            padding: 25px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #ecf0f1;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>قائمة المهام التفاعلية (To-Do List)</h2>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="أدخلي مهمة جديدة...">
+            <button onclick="addTask()">إضافة</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var input = document.getElementById('taskInput');
+            var taskText = input.value.trim();
+
+            if (taskText === "") {
+                alert("الرجاء كتابة مهمة أولاً!");
+                return;
+            }
+
+            var ul = document.getElementById('taskList');
+            var li = document.createElement('li');
+
+            li.innerHTML = taskText + ' <button class="delete-btn" onclick="removeTask(this)">حذف</button>';
+            ul.appendChild(li);
+
+            input.value = ""; // تفريغ حقل الإدخال بعد الإضافة
+        }
+
+        function removeTask(button) {
+            var li = button.parentElement;
+            li.remove();
+        }
+    </script>
+
+</body>
+</html>
